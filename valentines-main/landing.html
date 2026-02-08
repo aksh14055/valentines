@@ -49,6 +49,56 @@
       z-index: 1;
     }
 
+    /* ===== PHOTO GALLERY STYLES ===== */
+    .photo-gallery {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 350px;
+      height: 400px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      z-index: 50;
+      backdrop-filter: blur(5px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .photo-gallery-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .gallery-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .gallery-photo.active {
+      opacity: 1;
+    }
+
+    .photo-gallery.show {
+      animation: photoReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes photoReveal {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
     .heart {
       font-size: 80px;
       animation: pulse 2s ease-in-out infinite;
@@ -173,6 +223,13 @@
     <h1 class="text">I have something to ask you...</h1>
     <p class="subtitle">Click to continue</p>
   </div>
+  
+  <!-- Photo Gallery -->
+  <div class="photo-gallery" id="photoGallery">
+    <div class="photo-gallery-inner">
+      <img class="gallery-photo active" src="https://raw.githubusercontent.com/aksh14055/valentines/main/valentines-main/WhatsApp%20Image%202026-02-08%20at%2013.40.19.jpeg" alt="Our moment">
+    </div>
+  </div>
 
   <script>
     // Custom cursor
@@ -231,12 +288,20 @@
     // Transition to main page
     const heart = document.getElementById('heart');
     const overlay = document.querySelector('.transition-overlay');
+    const photoGallery = document.getElementById('photoGallery');
 
     heart.addEventListener('click', () => {
-      overlay.classList.add('active');
-      setTimeout(() => {
-        window.location.href = 'index.html';
-      }, 800);
+      if (!photoGallery.classList.contains('show')) {
+        photoGallery.classList.add('show');
+        if (soundDesign) soundDesign.playSuccessSound();
+        
+        setTimeout(() => {
+          overlay.classList.add('active');
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 800);
+        }, 1500);
+      }
     });
   </script>
 <script src="soundDesign.js"></script>
