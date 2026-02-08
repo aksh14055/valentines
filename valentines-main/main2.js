@@ -151,38 +151,34 @@ function no() {
 }
 
 function yes() {
+  let successModal = document.getElementById("model2");
+  let pleadingModal = document.getElementById("model");
+
+  pleadingModal.style.display = "none";
+  
+  // Show success modal
+  successModal.style.display = "flex";
+  
   // Create confetti explosion
   createConfetti();
   
-  let model = document.getElementById("model2");
-  let model2 = document.getElementById("model");
-
-  model2.style.display = "none";
-  model.style.display = "none";
+  // Create ripple effect from button
+  createRippleEffect();
   
-  // Freeze frame effect
+  const wedate = document.getElementById("wedate");
+  const btns = document.getElementById("btns");
+  const mainImg = document.getElementById("mainImg");
+  
+  btns.style.transition = 'all 0.6s ease';
+  btns.style.opacity = '0';
+  btns.style.transform = 'scale(0.8)';
+  
   setTimeout(() => {
-    model.style.display = "flex";
-    
-    // Dramatic reveal
-    const wedate = document.getElementById("wedate");
-    const btns = document.getElementById("btns");
-    const mainImg = document.getElementById("mainImg");
-    
-    // Create ripple effect from button
-    createRippleEffect();
-    
-    btns.style.transition = 'all 0.6s ease';
-    btns.style.opacity = '0';
-    btns.style.transform = 'scale(0.8)';
-    
-    setTimeout(() => {
-      btns.style.display = "none";
-      wedate.style.animation = 'heartbeat 0.6s ease';
-      wedate.innerHTML = 'Yay! 💙 Blue & Green Match Made in Heaven! 💚';
-      mainImg.src = "https://github.com/NikhilMarko03/resources/blob/main/happy3.gif?raw=true";
-    }, 300);
-  }, 500);
+    btns.style.display = "none";
+    wedate.style.animation = 'heartbeat 0.6s ease';
+    wedate.innerHTML = 'Yay! 💙 Blue & Green Match Made in Heaven! 💚';
+    mainImg.src = "https://github.com/NikhilMarko03/resources/blob/main/happy3.gif?raw=true";
+  }, 300);
 }
 
 // Confetti function
