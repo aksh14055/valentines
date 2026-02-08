@@ -1,16 +1,26 @@
-# Valentines Blossoming Flower 💖🌸
+# Valentines Blossoming Flower 💙💚
 
-Welcome to **Valentines Blossoming Flower**, a beautifully designed interactive webpage to surprise your loved one! This project creates a romantic digital experience where users are prompted with a question: **"Will You Be My Valentine?"** and are given an engaging and fun way to respond.
+Welcome to **Valentines Blossoming Flower**, a beautifully designed interactive webpage to surprise your loved one! This project creates a romantic digital experience where users are prompted with a question: **"Will You Be My Valentine?"** with a unique **blue & green** theme.
 
-🌐 **Live Demo**: You can check out the live version of this project at [junayed-hasan.github.io/valentines_blossoming_flower](https://junayed-hasan.github.io/valentines_blossoming_flower/). Easily host it on **GitHub Pages** and send the link to your loved one for a sweet surprise! 💕
+🌐 **Live Demo**: You can check out the live version of this project at [your-github-page](https://aksh14055.github.io/valentines/). 
 
-## ✨ Features
-- A heartwarming Valentine’s Day invitation with animated responses.
-- Fun and interactive Yes/No button behavior.
-- Beautiful floral animation with glowing effects.
-- Background music to enhance the experience.
-- Surprise blossom animation when the answer is **Yes**.
-- A pleading animation if **No** is selected.
+## ✨ Enhanced Features
+- **Landing Page** with smooth cursor effects and particle animations
+- **Premium Typography** with Playfair Display and Inter fonts
+- **Custom Cursor** that follows mouse movement with smooth easing
+- **Enhanced Animations** with cubic-bezier transitions and micro-interactions
+- **Confetti Explosion** when Yes is clicked (100 particles!)
+- **Easter Egg** - Hold both buttons for 3 seconds for a surprise message
+- **Ripple Effects** on button clicks
+- **Glassmorphic Design** with backdrop blur effects
+- **Responsive Design** optimized for mobile, tablet, and desktop
+- **Blue Color Significance** - Personalized theme based on her favorite color 💙
+
+## 🎨 Design Philosophy
+The **blue & green** color scheme isn't random:
+- 💙 **Blue** represents HER (her favorite color)
+- 💚 **Green** represents US growing together
+- Together they symbolize natural pairs: sky & grass, ocean & forest
 
 ## 🖼️ Preview
 | Screenshot | Description |

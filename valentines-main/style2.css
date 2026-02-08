@@ -1,18 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-  --her-blue: #a2c2e0;
-  /* Soft Blue */
-  --his-green: #9caf88;
-  /* Sage Green */
-  --her-blue-dark: #4a90e2;
-  --his-green-dark: #50c878;
+  --her-blue-light: #a2c2e0;
+  --her-blue-main: #4a90e2;
+  --her-blue-deep: #2c5aa0;
+  --us-green-light: #a8e6cf;
+  --us-green-main: #56ab91;
+  --accent-gold: #ffd700;
+  --pure-white: #ffffff;
+  --text-dark: #2c3e50;
 }
 
 body {
-  background: linear-gradient(135deg, #e0f7fa 0%, #e8f5e9 100%);
-  /* Soft Blue to Green */
-  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #a2c2e0 0%, #e8f5e9 50%, #a8e6cf 100%);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
@@ -31,6 +32,29 @@ body {
 
 html {
   overflow: hidden;
+  cursor: none;
+}
+
+body {
+  cursor: none;
+}
+
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--us-green-light);
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  transition: transform 0.15s ease, background 0.3s ease;
+  box-shadow: 0 0 20px rgba(168, 230, 207, 0.6);
+  opacity: 0.9;
+}
+
+.custom-cursor.active {
+  transform: scale(1.5);
+  background: var(--us-green-main);
 }
 
 * {
@@ -38,15 +62,15 @@ html {
 }
 
 .headerText {
-  font-family: "Great Vibes", cursive;
-  font-weight: 400;
-  font-size: 60px;
-  /* Increased size for impact */
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 6vw, 4rem);
   text-align: center;
   margin-top: 30px;
   margin-bottom: 20px;
-  color: #2c3e50;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  color: var(--her-blue-deep);
+  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
+  animation: fadeInScale 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
 }
 
 .image {
@@ -74,27 +98,56 @@ html {
 .button {
   border: none;
   color: white;
-  padding: 15px 40px;
+  padding: 18px 45px;
   text-align: center;
   border-radius: 50px;
   text-decoration: none;
   display: inline-block;
   font-size: 18px;
   font-weight: 600;
+  font-family: 'Inter', sans-serif;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.button:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 /* Specific Button Styles */
 #yes {
-  background: linear-gradient(to right, #11998e, #38ef7d);
-  /* Green Gradient */
+  background: linear-gradient(135deg, var(--us-green-main), var(--us-green-light));
+}
+
+#yes:hover {
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 12px 35px rgba(86, 171, 145, 0.4);
 }
 
 #no {
-  background: linear-gradient(to right, #2193b0, #6dd5ed);
-  /* Blue Gradient */
+  background: linear-gradient(135deg, var(--her-blue-main), var(--her-blue-light));
+}
+
+#no:hover {
+  transform: translateY(2px);
+  box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3);
 }
 
 .button:hover {
@@ -139,44 +192,62 @@ html {
 
 /* Modal Styles */
 .model {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   display: none;
   z-index: 100;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  background-color: rgba(255, 255, 255, 0.4);
-  /* Lighter, dreamier overlay */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(74, 144, 226, 0.2);
+  animation: modalFadeIn 0.3s ease;
 }
 
 .model-content {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.9);
-  padding: 30px;
-  border-radius: 25px;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 30px;
   width: 90%;
-  max-width: 450px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-  border: 2px solid white;
+  gap: 25px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border: 3px solid var(--her-blue-light);
+  animation: modalSlideIn 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translate(-50%, -60%) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
 }
 
 .modelText {
-  font-family: "Poppins", sans-serif;
+  font-family: "Playfair Display", serif;
   font-weight: 600;
-  font-size: 24px;
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
   text-align: center;
-  color: #333;
+  color: var(--her-blue-deep);
+  line-height: 1.4;
 }
 
 .modelImg {
@@ -199,4 +270,55 @@ html {
   text-decoration: none;
   color: #555;
   font-weight: 600;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.1); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.05); }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); filter: none; }
+  20% { transform: translate(-5px, 5px); filter: hue-rotate(90deg); }
+  40% { transform: translate(5px, -5px); filter: hue-rotate(180deg); }
+  60% { transform: translate(-5px, -5px); filter: hue-rotate(270deg); }
+  80% { transform: translate(5px, 5px); filter: hue-rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body, html { cursor: auto !important; }
+  .custom-cursor { display: none !important; }
+  
+  .headerText {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+    margin-top: 20px;
+  }
+  
+  .button {
+    padding: 15px 35px;
+    font-size: 16px;
+  }
+  
+  .image {
+    height: 250px;
+  }
+  
+  .flex {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .model-content {
+    padding: 25px;
+    width: 95%;
+  }
+  
+  .button {
+    padding: 12px 30px;
+    font-size: 15px;
+  }
 }
