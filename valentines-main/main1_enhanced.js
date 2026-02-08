@@ -249,3 +249,89 @@ document.addEventListener('click', (e) => {
     });
   }
 });
+// ===== GARDEN PHOTO GALLERY SYSTEM =====
+document.addEventListener('DOMContentLoaded', () => {
+  const gardenPhotos = document.querySelectorAll('.garden-gallery-photo');
+  const dotsContainer = document.getElementById('gardenGalleryDots');
+  const gardenGallery = document.getElementById('gardenPhotoGallery');
+  let currentGardenPhotoIndex = 0;
+  let gardenPhotoInterval = null;
+
+  // Create carousel dots for garden gallery
+  if (dotsContainer && gardenPhotos.length > 0) {
+    for (let i = 0; i < gardenPhotos.length; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => goToGardenPhoto(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  window.goToGardenPhoto = function(index) {
+    currentGardenPhotoIndex = index;
+    updateGardenCarousel();
+  };
+
+  window.nextGardenPhoto = function() {
+    currentGardenPhotoIndex = (currentGardenPhotoIndex + 1) % gardenPhotos.length;
+    updateGardenCarousel();
+  };
+
+  function updateGardenCarousel() {
+    gardenPhotos.forEach((photo, index) => {
+      photo.classList.remove('active');
+      gsap.to(photo, { opacity: index === currentGardenPhotoIndex ? 1 : 0, duration: 0.6 });
+      if (index === currentGardenPhotoIndex) {
+        photo.classList.add('active');
+      }
+    });
+    
+    document.querySelectorAll('.garden-gallery-dots .dot').forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentGardenPhotoIndex);
+    });
+  }
+
+  // Trigger gallery on flower click or night div click
+  const flowers = document.querySelectorAll('.flower');
+  const nightDiv = document.querySelector('.night');
+
+  flowers.forEach(flower => {
+    flower.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!gardenGallery.classList.contains('show')) {
+        openGardenGallery();
+        if (soundDesign) soundDesign.playSuccessSound();
+      }
+    });
+  });
+
+  nightDiv.addEventListener('click', () => {
+    if (!gardenGallery.classList.contains('show')) {
+      openGardenGallery();
+      if (soundDesign) soundDesign.playSuccessSound();
+    }
+  });
+
+  window.openGardenGallery = function() {
+    gardenGallery.classList.add('show');
+    currentGardenPhotoIndex = 0;
+    updateGardenCarousel();
+    
+    // Auto-rotate photos
+    gardenPhotoInterval = setInterval(() => {
+      nextGardenPhoto();
+    }, 2500);
+  };
+
+  window.closeGardenGallery = function() {
+    gardenGallery.classList.remove('show');
+    clearInterval(gardenPhotoInterval);
+  };
+
+  // Close gallery when clicking outside
+  gardenGallery.addEventListener('click', (e) => {
+    if (e.target === gardenGallery) {
+      closeGardenGallery();
+    }
+  });
+});

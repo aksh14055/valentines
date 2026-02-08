@@ -99,6 +99,32 @@
       }
     }
 
+    .carousel-dots {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 60;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .dot.active {
+      background: white;
+      transform: scale(1.2);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    }
+
     .heart {
       font-size: 80px;
       animation: pulse 2s ease-in-out infinite;
@@ -227,8 +253,13 @@
   <!-- Photo Gallery -->
   <div class="photo-gallery" id="photoGallery">
     <div class="photo-gallery-inner">
-      <img class="gallery-photo active" src="https://raw.githubusercontent.com/aksh14055/valentines/main/valentines-main/WhatsApp%20Image%202026-02-08%20at%2013.40.19.jpeg" alt="Our moment">
+      <img class="gallery-photo active" src="https://raw.githubusercontent.com/aksh14055/valentines/main/valentines-main/WhatsApp%20Image%202026-02-08%20at%2013.40.19.jpeg" alt="Us 1">
+      <img class="gallery-photo" src="https://raw.githubusercontent.com/aksh14055/valentines/main/valentines-main/WhatsApp%20Image%202026-02-08%20at%2013.40.20%20(1).jpeg" alt="Us 2">
+      <img class="gallery-photo" src="https://raw.githubusercontent.com/aksh14055/valentines/main/valentines-main/WhatsApp%20Image%202026-02-08%20at%2013.40.20.jpeg" alt="Us 3">
+      <img class="gallery-photo" src="https://raw.githubusercontent.com/aksh14055/valentines/main/valentines-main/WhatsApp%20Image%202026-02-08%20at%2013.40.21%20(1).jpeg" alt="Us 4">
+      <img class="gallery-photo" src="https://raw.githubusercontent.com/aksh14055/valentines/main/valentines-main/WhatsApp%20Image%202026-02-08%20at%2013.40.21.jpeg" alt="Us 5">
     </div>
+    <div class="carousel-dots" id="carouselDots"></div>
   </div>
 
   <script>
@@ -290,17 +321,62 @@
     const overlay = document.querySelector('.transition-overlay');
     const photoGallery = document.getElementById('photoGallery');
 
+    // Photo carousel system
+    let currentPhotoIndex = 0;
+    const photos = document.querySelectorAll('.gallery-photo');
+    const totalPhotos = photos.length;
+    
+    // Create carousel dots
+    const dotsContainer = document.getElementById('carouselDots');
+    for (let i = 0; i < totalPhotos; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => goToPhoto(i));
+      dotsContainer.appendChild(dot);
+    }
+
+    function updatePhotoCarousel() {
+      photos.forEach((photo, index) => {
+        photo.classList.remove('active');
+        gsap.to(photo, { opacity: index === currentPhotoIndex ? 1 : 0, duration: 0.6 });
+        if (index === currentPhotoIndex) {
+          photo.classList.add('active');
+        }
+      });
+      
+      document.querySelectorAll('.dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentPhotoIndex);
+      });
+    }
+
+    function goToPhoto(index) {
+      currentPhotoIndex = index;
+      updatePhotoCarousel();
+    }
+
+    function nextPhoto() {
+      currentPhotoIndex = (currentPhotoIndex + 1) % totalPhotos;
+      updatePhotoCarousel();
+    }
+
+    // Auto-cycle photos when gallery is shown
+    let photoInterval = null;
+    
     heart.addEventListener('click', () => {
       if (!photoGallery.classList.contains('show')) {
         photoGallery.classList.add('show');
         if (soundDesign) soundDesign.playSuccessSound();
         
+        // Auto-cycle through photos every 2.5 seconds
+        photoInterval = setInterval(nextPhoto, 2500);
+        
         setTimeout(() => {
+          clearInterval(photoInterval);
           overlay.classList.add('active');
           setTimeout(() => {
             window.location.href = 'index.html';
           }, 800);
-        }, 1500);
+        }, 4500);
       }
     });
   </script>

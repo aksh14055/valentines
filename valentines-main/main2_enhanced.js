@@ -415,3 +415,64 @@ function ly2() {
     }
   });
 }
+// ===== MODAL CAROUSEL INITIALIZATION =====
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize modal carousel
+  const modalPhotos = document.querySelectorAll('.modal-carousel-photo');
+  const dotsContainer = document.getElementById('modalCarouselDots');
+  let currentModalPhotoIndex = 0;
+
+  // Create carousel dots for modal
+  if (dotsContainer && modalPhotos.length > 0) {
+    for (let i = 0; i < modalPhotos.length; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => goToModalPhoto(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  window.goToModalPhoto = function(index) {
+    currentModalPhotoIndex = index;
+    updateModalCarousel();
+  };
+
+  window.nextModalPhoto = function() {
+    currentModalPhotoIndex = (currentModalPhotoIndex + 1) % modalPhotos.length;
+    updateModalCarousel();
+  };
+
+  function updateModalCarousel() {
+    modalPhotos.forEach((photo, index) => {
+      photo.classList.remove('active');
+      gsap.to(photo, { opacity: index === currentModalPhotoIndex ? 1 : 0, duration: 0.6 });
+      if (index === currentModalPhotoIndex) {
+        photo.classList.add('active');
+      }
+    });
+    
+    document.querySelectorAll('.modal-carousel-dots .dot').forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentModalPhotoIndex);
+    });
+  }
+
+  // Auto-rotate modal photos when modal is shown
+  const successModal = document.getElementById('model2');
+  if (successModal) {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (successModal.style.display === 'flex') {
+          let modalPhotoInterval = setInterval(() => {
+            if (successModal.style.display === 'flex') {
+              nextModalPhoto();
+            } else {
+              clearInterval(modalPhotoInterval);
+            }
+          }, 2500);
+        }
+      });
+    });
+    
+    observer.observe(successModal, { attributes: true });
+  }
+});

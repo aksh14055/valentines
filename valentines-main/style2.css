@@ -488,6 +488,68 @@ body {
   box-shadow: 0 8px 20px rgba(74, 144, 226, 0.3);
 }
 
+/* Modal Photo Carousel */
+.modal-photo-carousel {
+  width: 240px;
+  height: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(74, 144, 226, 0.3);
+  margin: 20px auto;
+  background: rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.modal-carousel-inner {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 35px);
+  overflow: hidden;
+}
+
+.modal-carousel-photo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.modal-carousel-photo.active {
+  opacity: 1;
+}
+
+.modal-carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  height: 35px;
+  background: rgba(74, 144, 226, 0.1);
+}
+
+.modal-carousel-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(74, 144, 226, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(74, 144, 226, 0.3);
+}
+
+.modal-carousel-dots .dot:hover {
+  background: rgba(74, 144, 226, 0.7);
+  transform: scale(1.1);
+}
+
+.modal-carousel-dots .dot.active {
+  background: var(--her-blue-main);
+  transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.6);
+}
+
 @keyframes photoFade {
   from {
     opacity: 0;
