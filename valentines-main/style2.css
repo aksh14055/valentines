@@ -225,6 +225,21 @@ body {
   animation: modalSlideIn 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
 }
 
+/* Modal Button Styling */
+.model-content .button {
+  background: linear-gradient(135deg, var(--her-blue-main), var(--her-blue-light)) !important;
+  color: white !important;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 15px 40px;
+  margin-top: 10px;
+}
+
+.model-content .button:hover {
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 12px 35px rgba(74, 144, 226, 0.4) !important;
+}
+
 @keyframes modalFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
