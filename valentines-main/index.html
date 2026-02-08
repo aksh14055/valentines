@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Will You Be My Valentine? 💙💚</title>
+  <link rel="stylesheet" href="style2.css" />
+  <meta name="description" content="A surprise for my favorite person." />
+  <meta name="theme-color" content="#a2c2e0">
+</head>
+
+<body>
+  <!-- Footer/Signature -->
+  <div class="flex f-aps">
+    <p>
+      Made with 💙 & 💚 by
+      <a rel="noopener" href="javascript:void(0)" target="_blank">Your Secret Admirer</a>
+    </p>
+  </div>
+
+  <!-- Main Content -->
+  <h1 class="headerText" id="wedate">Will You Be My Valentine? 💙💚</h1>
+
+  <img class="image" src="https://github.com/NikhilMarko03/resources/blob/main/happy1.gif?raw=true" alt="Cute Gif"
+    id="mainImg" />
+
+  <!-- Buttons -->
+  <div class="flex" id="btns">
+    <button class="button" id="yes" onmouseenter="happy()" onmouseleave="normal()" onclick="yes()">
+      Yes 🌿
+    </button>
+    <button class="button" id="no" onmouseenter="angry()" onmouseleave="normal()" onclick="no()">
+      No 💧
+    </button>
+  </div>
+
+  <!-- Container for Floating Elements (Populated by JS) -->
+  <div class="absImages" id="absImg"></div>
+
+  <!-- Success Modal -->
+  <div class="model" id="model2">
+    <div class="model-content">
+      <p class="modelText" id="modelText2">Yay! Blue & Green match perfectly! 💙💚</p>
+      <img class="modelImg" id="modelImg2"
+        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5/26FLdmIp6wJr91JAI/giphy.gif"
+        alt="Happy celebration" />
+      <button class="button" onclick="ly2()">
+        See Your Surprise 🌸
+      </button>
+    </div>
+  </div>
+
+  <!-- Pleading/No Modal -->
+  <div id="model" class="model">
+    <div class="model-content">
+      <p class="modelText" id="modelText">Please?</p>
+      <img class="modelImg" id="modelImg"
+        src="https://media1.tenor.com/images/9413ffc5a11722a3cc456a88810750bd/tenor.gif?itemid=14193216"
+        alt="Sad Cat" />
+      <div class="flex">
+        <button class="button" id="yes-model" onclick="yes()">
+          Okay Yes! 🌿
+        </button>
+        <button class="button" id="no-model" onclick="no()">
+          Still No... 💧
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="main2.js"></script>
+
+</html>
