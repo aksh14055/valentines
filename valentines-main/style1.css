@@ -7,7 +7,10 @@
 }
 
 :root {
-  --dark-color: #ffffff;
+  --dark-color: #1a2332;
+  --her-blue-deep: #2c5aa0;
+  --her-blue-main: #4a90e2;
+  --us-green-main: #56ab91;
 }
 
 body {
@@ -15,7 +18,7 @@ body {
   align-items: flex-end;
   justify-content: center;
   min-height: 100vh;
-  background-color: var(--dark-color);
+  background: radial-gradient(ellipse at bottom, #1a2332 0%, #0d1117 100%);
   overflow: hidden;
   perspective: 1000px;
 }
@@ -28,8 +31,7 @@ body {
   width: 100%;
   height: 100%;
   filter: blur(0.1vmin);
-  background: linear-gradient(135deg, #e0f7fa 0%, #e8f5e9 100%);
-  /* Blue/Green Gradient to match landing */
+  background: linear-gradient(to bottom, #0d1117 0%, #1a2332 50%, #2c5aa0 100%);
 
 
   .flowers {
@@ -156,7 +158,7 @@ body {
     transform: translate(-50%, -100%);
     width: 8vmin;
     height: 8vmin;
-    background-color: #6bf0ff;
+    background-color: #4a90e2;
     filter: blur(10vmin);
   }
 
@@ -168,8 +170,8 @@ body {
     width: 8vmin;
     height: 11vmin;
     border-radius: 51% 49% 47% 53%/44% 45% 55% 69%;
-    background-color: #a7ffee;
-    background-image: linear-gradient(to top, #0077ff, #00c3ff);
+    background-color: #a2c2e0;
+    background-image: linear-gradient(to top, #2c5aa0, #4a90e2);
     /* Blue Gradient */
     transform-origin: bottom center;
     opacity: 0.9;
@@ -194,7 +196,7 @@ body {
     transform-origin: bottom left;
     border-radius: 4vmin 10vmin 4vmin 4vmin;
     transform: translate(0%, 18%) rotateX(70deg) rotate(-43deg);
-    background-image: linear-gradient(to top, #0055ff, #0099ff);
+    background-image: linear-gradient(to top, #2c5aa0, #4a90e2);
     /* Darker Blue */
     z-index: 1;
     opacity: 0.8;
@@ -207,7 +209,7 @@ body {
     width: 9vmin;
     height: 4vmin;
     border-radius: 50%;
-    background-color: #ffffff;
+    background-color: #a8e6cf;
     /* pure white center */
   }
 
@@ -226,7 +228,7 @@ body {
   .flower__line {
     height: 55vmin;
     width: 1.5vmin;
-    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.2), transparent, rgba(255, 255, 255, 0.2)), linear-gradient(to top, transparent 10%, #2e7d32, #66bb6a);
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.2), transparent, rgba(255, 255, 255, 0.2)), linear-gradient(to top, transparent 10%, #56ab91, #a8e6cf);
     /* Green Stem */
     box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
     animation: grow-flower-tree 4s backwards;
@@ -242,7 +244,7 @@ body {
     height: var(--h);
     border-top-right-radius: var(--h);
     border-bottom-left-radius: var(--h);
-    background-image: linear-gradient(to top, rgba(46, 125, 50, 0.4), #66bb6a);
+    background-image: linear-gradient(to top, rgba(86, 171, 145, 0.4), #a8e6cf);
     /* Green Leaf */
   }
 
@@ -296,7 +298,7 @@ body {
   }
 
   .flower__light:nth-child(odd) {
-    background-color: #23f0ff;
+    background-color: #4a90e2;
   }
 
   .flower__light--1 {
