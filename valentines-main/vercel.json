@@ -2,6 +2,12 @@
   "buildCommand": "echo 'Build complete'",
   "outputDirectory": ".",
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/landing.html"
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
